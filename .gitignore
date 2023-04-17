@@ -20,6 +20,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 # IDE Files
 #-------------------------
+target
 /nbproject/
 .idea/*
 
