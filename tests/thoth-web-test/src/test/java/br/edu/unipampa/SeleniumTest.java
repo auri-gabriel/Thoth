@@ -86,7 +86,7 @@ public class SeleniumTest {
 	}
 
 	@Test
-	public void SignUpNomeInválido() throws InterruptedException {
+	public void SignUpNomeInvalido() throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		Dimension newDimension = new Dimension(1936, 1056);
