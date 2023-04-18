@@ -1,5 +1,6 @@
 package br.edu.unipampa;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -33,8 +34,6 @@ public class SeleniumTest {
 			String actualPage = driver.getCurrentUrl();
 			assertEquals(expectedPage, actualPage);
 
-			Thread.sleep(1000);
-			driver.quit();
 	}
 
 	@Test
@@ -49,8 +48,6 @@ public class SeleniumTest {
 			String actualPage = driver.getCurrentUrl();
 			assertEquals(expectedPage, actualPage);
 
-			Thread.sleep(1500);
-			driver.quit();
 	}
 
 	@Test
@@ -66,8 +63,6 @@ public class SeleniumTest {
 		String actualPage = driver.getCurrentUrl();
 		assertEquals(expectedPage, actualPage);
 
-		Thread.sleep(1500);
-		driver.quit();
 	}
 
 	@Test
@@ -82,8 +77,6 @@ public class SeleniumTest {
 		String actualPage = driver.getCurrentUrl();
 		assertEquals(expectedPage, actualPage);
 
-		Thread.sleep(1500);
-		driver.quit();
 	}
 
 	@Test
@@ -99,8 +92,6 @@ public class SeleniumTest {
 		String actualPage = driver.getCurrentUrl();
 		assertEquals(expectedPage, actualPage);
 
-		Thread.sleep(1500);
-		driver.quit();
 	}
 
 	@Test
@@ -120,8 +111,6 @@ public class SeleniumTest {
 		String actualPage = driver.getCurrentUrl();
 		assertEquals(expectedPage, actualPage);
 
-		Thread.sleep(3000);
-		driver.quit();
 	}
 
 	public void auxLoginCompleto() {
@@ -129,22 +118,74 @@ public class SeleniumTest {
 		driver.findElement(By.id("InputEmail1")).sendKeys("joaovilla.aluno@unipampa.edu.br");
 		driver.findElement(By.id("InputPassword")).sendKeys("braz2205388");
 		driver.findElement(By.cssSelector(".btn-success")).click();
-		driver.findElement(By.cssSelector(".form-group:nth-child(1)")).click(); //click on "Open" button
+		driver.findElement(By.linkText("Open")).click();
 	}
 
 	@Test
-	public void ProjectPlanning() throws InterruptedException {
+	public void QualityAssessementSelecaoVazia() throws InterruptedException {
 
+		String xpath = ".nav-item:nth-child(7) > .nav-link";
 		auxLoginCompleto();
+		driver.findElement(By.linkText("Planning")).click();
+		driver.findElement(By.xpath("//a[contains(@href, '#tab_quality')]")).click();
+		driver.findElement(By.id("min_to_QQ01")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.id("min_to_QQ01")).sendKeys("Yes");
+		Thread.sleep(2000);
+		driver.findElement(By.cssSelector(".swal2-confirm")).click();
 
 		/*String expectedPage = "http://200.132.136.13/Thoth/dashboard";
 		String actualPage = driver.getCurrentUrl();
 		assertEquals(expectedPage, actualPage);*/
 
-		Thread.sleep(3000);
-		driver.quit();
 	}
 
+	@Test
+	public void FecharMensagemDeSenhaInvalida() throws InterruptedException {
 
+		driver.findElement(By.linkText("Sign in")).click();
+		driver.findElement(By.id("InputEmail1")).sendKeys("joaovilla.aluno@unipampa.edu.br");
+		driver.findElement(By.id("InputPassword")).sendKeys("aaaaa");
+		Thread.sleep(1000);
+		driver.findElement(By.cssSelector(".btn-success")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.id("InputPassword")).clear();
+		driver.findElement(By.id("InputEmail1")).clear();
+		Thread.sleep(1000);
+		driver.findElement(By.id("InputEmail1")).sendKeys("joaovilla.aluno@unipampa.edu.br");
+		driver.findElement(By.id("InputPassword")).sendKeys("braz2205388");
+		driver.findElement(By.cssSelector(".btn-success")).click();
+		Thread.sleep(1800);
+		driver.findElement(By.linkText("Open")).click();
+		driver.findElement(By.linkText("Planning")).click();
+		Thread.sleep(2800);
+		driver.findElement(By.cssSelector(".alert span")).click();
+		Thread.sleep(2800);
+		driver.findElement(By.linkText("Conducting")).click();
+		Thread.sleep(2700);
+		driver.findElement(By.cssSelector(".alert span")).click();
+		driver.findElement(By.linkText("Planning")).click();
+		Thread.sleep(2700);
+		driver.findElement(By.cssSelector(".alert span")).click();
+
+	}
+
+	@Test
+	public void ConductingFilterTest() throws InterruptedException {
+
+		auxLoginCompleto();
+		driver.findElement(By.linkText("Conducting")).click();
+		driver.findElement(By.cssSelector(".nav-item:nth-child(3) > .nav-link")).click();
+		driver.findElement(By.xpath("//table[@id='table_papers_quality']/tbody/tr/td[2]")).click();
+		driver.findElement(By.cssSelector(".close:nth-child(4) > span")).click();
+		driver.findElement(By.cssSelector("form-control-sm")).click();
+		driver.findElement(By.cssSelector("form-control-sm")).sendKeys("aaaa");
+	}
+
+	@AfterAll
+	public static void fim() throws InterruptedException {
+		Thread.sleep(2500);
+		driver.quit();
+	}
 
 }
