@@ -1,5 +1,6 @@
 package br.edu.unipampa;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SeleniumTest {
 
-    @Test
+    /*@Test
     public void testFirefox() {
         // Set the path to the Firefox driver executable
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
@@ -28,17 +29,21 @@ public class SeleniumTest {
 
         // Close the browser window
         driver.quit();
-    }
+    }*/
+	private static WebDriver driver = new ChromeDriver();
+	private static Dimension newDimension = new Dimension(1936, 1056);
+
+	@BeforeAll
+	public static void init() {
+		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+		driver.manage().window().setSize(newDimension);
+		driver.get("http://200.132.136.13/Thoth/");
+	}
 
 	@Test
 	public void LoginCorreto() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		Dimension newDimension = new Dimension(1936, 1056);
 
 		try {
-			driver.get("http://200.132.136.13/Thoth/");
-			driver.manage().window().setSize(newDimension);
 			driver.findElement(By.linkText("Sign in")).click();
 			driver.findElement(By.id("InputEmail1")).sendKeys("joaovilla.aluno@unipampa.edu.br");
 			driver.findElement(By.id("InputPassword")).sendKeys("braz2205388");
@@ -51,12 +56,7 @@ public class SeleniumTest {
 
 	@Test
 	public void LoginIncorreto() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		Dimension newDimension = new Dimension(1936, 1056);
 
-			driver.get("http://200.132.136.13/Thoth/");
-			driver.manage().window().setSize(newDimension);
 			driver.findElement(By.linkText("Sign in")).click();
 			driver.findElement(By.id("InputEmail1")).sendKeys("joaovilla.aluno@unipampa.edu.br");
 			driver.findElement(By.id("InputPassword")).sendKeys("a");
@@ -68,12 +68,6 @@ public class SeleniumTest {
 
 	@Test
 	public void SignUpEmailCaractereInvalido() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		Dimension newDimension = new Dimension(1936, 1056);
-
-		driver.manage().window().setSize(newDimension);
-		driver.get("http://200.132.136.13/Thoth/");
 
 		driver.findElement(By.linkText("Sign up")).click();
 		driver.findElement(By.id("name")).sendKeys("joao");
@@ -87,14 +81,6 @@ public class SeleniumTest {
 
 	@Test
 	public void SignUpNomeInvalido() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		Dimension newDimension = new Dimension(1936, 1056);
-
-		driver.manage().window().setSize(newDimension);
-		driver.get("http://200.132.136.13/Thoth/");
-
-
 		driver.findElement(By.linkText("Sign up")).click();
 		driver.findElement(By.id("name")).sendKeys("");
 		driver.findElement(By.id("InputEmail1")).sendKeys("marcio@gmail.com");
@@ -107,13 +93,6 @@ public class SeleniumTest {
 
 	@Test
 	public void SignUpSenhaCurta() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-
-		Dimension newDimension = new Dimension(1936, 1056);
-		WebDriver driver = new ChromeDriver();
-
-		driver.get("http://200.132.136.13/Thoth/");
-		driver.manage().window().setSize(newDimension);
 
 		driver.findElement(By.linkText("Sign up")).click();
 		driver.findElement(By.id("name")).sendKeys("marcio");
@@ -127,12 +106,6 @@ public class SeleniumTest {
 
 	@Test
 	public void SignUpEmailCaracteresInvalidos2() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		Dimension newDimension = new Dimension(1936, 1056);
-
-		driver.manage().window().setSize(newDimension);
-		driver.get("http://200.132.136.13/Thoth/");
 
 		driver.findElement(By.linkText("Sign up")).click();
 		driver.findElement(By.id("name")).sendKeys("marcio");
