@@ -701,7 +701,6 @@
 			<div class="input-group col-md-4">
 				<label for="min_score_to_app" class="col-sm-12">Minimum General Score to Approve</label>
 				<select class="form-control" id="min_score_to_app" onchange="edit_min_score(this);">
-					<option value="null"></option>
 					<?php $mini = $project->get_score_min();
 					foreach ($project->get_quality_scores() as $scores) {
 						$selected = "";
@@ -850,7 +849,6 @@
 						<td>
 							<select class="form-control" id="min_to_<?= $qa->get_id(); ?>"
 									data-qa="<?= $qa->get_id(); ?>" onchange="edit_min_score_qa(this)">
-								<option value=""></option>
 								<?php
 								$min = $qa->get_min_to_approve();
 								foreach ($qa->get_scores() as $sc) {

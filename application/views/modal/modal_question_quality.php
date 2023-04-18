@@ -21,7 +21,7 @@
 					</div>
 					<div class="input-group col-md-3">
 						<label for="edit_weight_qa" class="col-sm-12">Weight</label>
-						<input type="number" class="form-control" id="edit_weight_qa" step="0.5">
+						<input type="number" class="form-control" id="edit_weight_qa" step="0.5" min="1" max="10">
 					</div>
 				</div>
 			</div>
