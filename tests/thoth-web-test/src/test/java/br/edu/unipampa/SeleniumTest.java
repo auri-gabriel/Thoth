@@ -11,25 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SeleniumTest {
 
-    /*@Test
-    public void testFirefox() {
-        // Set the path to the Firefox driver executable
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-
-        // Create a new Firefox driver instance
-        WebDriver driver = new ChromeDriver();
-
-        // Navigate to the Google homepage
-        driver.get("https://www.google.com");
-
-        // Verify that the page title is correct
-        String expectedTitle = "Google";
-        String actualTitle = driver.getTitle();
-        assertEquals(expectedTitle, actualTitle);
-
-        // Close the browser window
-        driver.quit();
-    }*/
 	private static WebDriver driver = new ChromeDriver();
 	private static Dimension newDimension = new Dimension(1936, 1056);
 
@@ -43,15 +24,17 @@ public class SeleniumTest {
 	@Test
 	public void LoginCorreto() throws InterruptedException {
 
-		try {
 			driver.findElement(By.linkText("Sign in")).click();
 			driver.findElement(By.id("InputEmail1")).sendKeys("joaovilla.aluno@unipampa.edu.br");
 			driver.findElement(By.id("InputPassword")).sendKeys("braz2205388");
 			driver.findElement(By.cssSelector(".btn-success")).click();
 
-		} finally {
-			driver.wait(1500);
-			driver.quit();}
+			String expectedPage = "http://200.132.136.13/Thoth/dashboard";
+			String actualPage = driver.getCurrentUrl();
+			assertEquals(expectedPage, actualPage);
+
+			Thread.sleep(1000);
+			driver.quit();
 	}
 
 	@Test
@@ -62,7 +45,11 @@ public class SeleniumTest {
 			driver.findElement(By.id("InputPassword")).sendKeys("a");
 			driver.findElement(By.cssSelector(".btn-success")).click();
 
-			//driver.wait(1000);
+			String expectedPage = "http://200.132.136.13/Thoth/dashboard";
+			String actualPage = driver.getCurrentUrl();
+			assertEquals(expectedPage, actualPage);
+
+			Thread.sleep(1500);
 			driver.quit();
 	}
 
@@ -71,11 +58,15 @@ public class SeleniumTest {
 
 		driver.findElement(By.linkText("Sign up")).click();
 		driver.findElement(By.id("name")).sendKeys("joao");
-		driver.findElement(By.id("InputEmail1")).sendKeys("!!!!@####");
+		driver.findElement(By.id("InputEmail1")).sendKeys("!!!!@.####");
 		driver.findElement(By.id("InputPassword\"")).sendKeys("123");
 		driver.findElement(By.cssSelector(".btn-success")).click();
 
-		driver.wait(1000);
+		String expectedPage = "http://200.132.136.13/Thoth/dashboard";
+		String actualPage = driver.getCurrentUrl();
+		assertEquals(expectedPage, actualPage);
+
+		Thread.sleep(1500);
 		driver.quit();
 	}
 
@@ -87,7 +78,11 @@ public class SeleniumTest {
 		driver.findElement(By.id("InputPassword\"")).sendKeys("123");
 		driver.findElement(By.cssSelector(".btn-success")).click();
 
-		driver.wait(1000);
+		String expectedPage = "http://200.132.136.13/Thoth/dashboard";
+		String actualPage = driver.getCurrentUrl();
+		assertEquals(expectedPage, actualPage);
+
+		Thread.sleep(1500);
 		driver.quit();
 	}
 
@@ -100,7 +95,11 @@ public class SeleniumTest {
 		driver.findElement(By.id("InputPassword\"")).sendKeys("1");
 		driver.findElement(By.cssSelector(".btn-success")).click();
 
-		driver.wait(1000);
+		String expectedPage = "http://200.132.136.13/Thoth/dashboard";
+		String actualPage = driver.getCurrentUrl();
+		assertEquals(expectedPage, actualPage);
+
+		Thread.sleep(1500);
 		driver.quit();
 	}
 
@@ -117,13 +116,34 @@ public class SeleniumTest {
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector(".btn-success")).click();
 
+		String expectedPage = "http://200.132.136.13/Thoth/dashboard";
+		String actualPage = driver.getCurrentUrl();
+		assertEquals(expectedPage, actualPage);
+
 		Thread.sleep(3000);
 		driver.quit();
 	}
 
+	public void auxLoginCompleto() {
+		driver.findElement(By.linkText("Sign in")).click();
+		driver.findElement(By.id("InputEmail1")).sendKeys("joaovilla.aluno@unipampa.edu.br");
+		driver.findElement(By.id("InputPassword")).sendKeys("braz2205388");
+		driver.findElement(By.cssSelector(".btn-success")).click();
+		driver.findElement(By.cssSelector(".form-group:nth-child(1)")).click(); //click on "Open" button
+	}
 
+	@Test
+	public void ProjectPlanning() throws InterruptedException {
 
+		auxLoginCompleto();
 
+		/*String expectedPage = "http://200.132.136.13/Thoth/dashboard";
+		String actualPage = driver.getCurrentUrl();
+		assertEquals(expectedPage, actualPage);*/
+
+		Thread.sleep(3000);
+		driver.quit();
+	}
 
 
 
