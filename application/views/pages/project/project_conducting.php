@@ -1,4 +1,12 @@
 <script src="<?= base_url('assets/js/bibupload.js'); ?>"></script>
+<style>
+td.file-name {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+</style>
 <div class="card">
 	<div class="text-center card-header">
 		<h4><?= $project->get_title(); ?></h4>
@@ -118,7 +126,7 @@
 								<tbody>
 								<?php foreach ($bib[$database->get_name()] as $b) { ?>
 									<tr>
-										<td><?= $b ?></td>
+										<td class="file-name"><?= $b ?></td>
 										<td>
 											<button class="btn btn-danger" onClick="delete_bib(this)">
 												<span class="far fa-trash-alt"></span>
