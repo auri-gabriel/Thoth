@@ -22,6 +22,7 @@ function add_term() {
 				confirmButtonText: 'Ok'
 			});
 		},
+		
 		success: function () {
 			table_search_string.row.add([
 				term, '' +
