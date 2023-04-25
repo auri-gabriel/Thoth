@@ -214,7 +214,7 @@ function delete_term(value) {
 					table_search_string.draw();
 
 					let x = document.getElementById("list_term");
-					x.remove(index);
+					x.remove(index+1);
 				}
 			});
 			Swal.fire(
