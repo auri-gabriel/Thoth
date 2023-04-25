@@ -127,7 +127,7 @@ td.file-name {
 								<?php foreach ($bib[$database->get_name()] as $b) { ?>
 									<tr>
 										<td class="file-name"><?= $b ?></td>
-										<td>
+										<td style="width: 1%;">
 											<button class="btn btn-danger" onClick="delete_bib(this)">
 												<span class="far fa-trash-alt"></span>
 											</button>
