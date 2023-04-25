@@ -44,6 +44,34 @@ function add_term() {
 			option.text = term;
 			x.add(option);
 			$("#term")[0].value = "";
+
+			let timerInterval
+			Swal({
+			  title: 'Success',
+			  text: "The term was Added",
+			  type: 'success',
+			  showCancelButton: false,
+			  confirmButtonText: 'Ok',
+			  timer: 700,
+			  onOpen: () => {
+				timerInterval = setInterval(() => {
+				  const content = Swal.getContent()
+				  if (content) {
+					const b = content.querySelector('b')
+					if (b) {
+					  b.textContent = Swal.getTimerLeft()
+					}
+				  }
+				}, 100)
+			  },
+			  onClose: () => {
+				clearInterval(timerInterval)
+			  }
+			}).then((result) => {
+			  if (result.value) {
+				$('#modal_term').modal('hide');
+			  }
+			});
 		}
 	});
 }
@@ -240,6 +268,34 @@ function add_synonym(syn = null) {
 				'<span class="far fa-trash-alt"></span>' +
 				'</button>';
 			$("#synonym")[0].value = "";
+
+			let timerInterval
+			Swal({
+			  title: 'Success',
+			  text: "The synonym was Added",
+			  type: 'success',
+			  showCancelButton: false,
+			  confirmButtonText: 'Ok',
+			  timer: 700,
+			  onOpen: () => {
+				timerInterval = setInterval(() => {
+				  const content = Swal.getContent()
+				  if (content) {
+					const b = content.querySelector('b')
+					if (b) {
+					  b.textContent = Swal.getTimerLeft()
+					}
+				  }
+				}, 100)
+			  },
+			  onClose: () => {
+				clearInterval(timerInterval)
+			  }
+			}).then((result) => {
+			  if (result.value) {
+				$('#modal_synonym').modal('hide');
+			  }
+			});
 		}
 	});
 }
