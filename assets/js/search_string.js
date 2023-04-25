@@ -76,6 +76,21 @@ function add_term() {
 	});
 }
 
+$(document).ready(function() {
+    $("#term").on("keyup", function(event) {
+        if (event.key === "Enter") {
+            add_term();
+        }
+    });
+});
+$(document).ready(function() {
+    $("#synonym").on("keyup", function(event) {
+        if (event.key === "Enter") {
+            add_synonym();
+        }
+    });
+});
+
 function modal_term(value) {
 	let row = table_search_string.row(value);
 	$('#modal_term #index_term').val(row.index());
