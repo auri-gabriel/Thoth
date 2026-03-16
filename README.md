@@ -181,6 +181,10 @@ XDEBUG_MODE=coverage docker compose run --rm web composer test:coverage
 
 Contributions are welcome. See [contributing.md](contributing.md) for contribution guidelines.
 
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=auri-gabriel/thoth-legacy-revived)](https://github.com/auri-gabriel/thoth-legacy-revived/graphs/contributors)
+
 ## License
 
 This project is licensed under the MIT License. See [license.txt](license.txt) for details.
